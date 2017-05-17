@@ -16,7 +16,9 @@ class TweetStream extends Component {
 
   render(){
     return (
-      <Tweet data={this.state.data[0]} />
+      <section id="tweet-stream-react">
+        {this.state.data.map((data, i) => <Tweet data={this.state.data[i]} key={i} />)}
+      </section>
     )
   }
 }
