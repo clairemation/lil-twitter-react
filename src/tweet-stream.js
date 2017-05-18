@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Tweet from './tweet'
+import TweetStreamDisplay from './tweet-stream-display'
 import tweetStubData from './tweets-stub-data'
 
 const STUB_MODE = false
@@ -30,11 +31,7 @@ class TweetStream extends Component {
   render(){
     if(this.state.data[0]){
       return (
-        <ul id="tweet-stream-react">
-          {this.state.data.map((data, i) =>
-            <Tweet data={this.state.data[i]} key={i} fetchHashtagTweets={this.fetchHashtagTweets} />
-          )}
-        </ul>
+        <TweetStreamDisplay data={this.state.data} />
       )
     }
     else return (

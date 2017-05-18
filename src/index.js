@@ -1,21 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TweetStream from './tweet-stream';
-import TweetForm from './tweet-form';
-import TrendsStream from './trends-stream';
+import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <TweetStream />,
-  document.getElementById('tweet-stream-root')
+  <App />,
+  document.getElementById('react-root')
 );
 
-ReactDOM.render(
-  <TweetForm />,
-  document.getElementById('tweet-form-root')
-);
+// ReactDOM.render(
+//   <TweetStream />,
+//   document.getElementById('tweet-stream-root')
+// );
 
-ReactDOM.render(
-  <TrendsStream />,
-  document.getElementById('trends-root')
-);
+// ReactDOM.render(
+//   <TweetForm />,
+//   document.getElementById('tweet-form-root')
+// );
+
+// ReactDOM.render(
+//   <TrendsStream />,
+//   document.getElementById('trends-root')
+// );
