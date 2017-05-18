@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TweetStreamDisplay from './tweet-stream-display'
 import TrendsStream from './trends-stream'
+import TweetForm from './tweet-form'
 import tweetStubData from './tweets-stub-data'
 
 const STUB_MODE = false
@@ -41,7 +42,7 @@ class App extends Component {
           <section className="container">
             <section id="tweet-box">
               <p id="tweet-box-title">Compose New Tweet</p>
-              <section id="tweet-form-root"></section>
+              <TweetForm />
 
             </section>
             <section id="trends-container">
