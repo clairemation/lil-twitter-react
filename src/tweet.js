@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 
-class TweetStream extends Component {
+class Tweet extends Component {
+  localFetchHashtagTweets(hashtag){
+    this.props.fetchHashtagTweets(hashtag)
+  }
 
   render(){
     return (
@@ -12,11 +15,14 @@ class TweetStream extends Component {
             <span className="username">{this.props.data.handle}</span>
             <span className="timestamp">- 6m</span>
           </p>
-          <p>{this.props.data.content}</p>
+          <p>
+            {this.props.data.content}
+            {this.props.data.hashtag_names.map((hashtag, i) => <span onClick={() => this.localFetchHashtagTweets(hashtag)} className="hashtag" key={i}> #{hashtag} </span>)}
+          </p>
         </div>
       </li>
     )
   }
 }
 
-export default TweetStream
+export default Tweet
