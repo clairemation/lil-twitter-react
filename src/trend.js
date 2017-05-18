@@ -13,7 +13,7 @@ class Trend extends Component {
 
   render() {
     return (
-      <li onClick={this.fetchHashtagTweets}>{this.props.hashtagName}</li>
+      <li className="clickable" onClick={this.fetchHashtagTweets}>{this.props.hashtagName}</li>
     )
   }
 }

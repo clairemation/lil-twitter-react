@@ -12,19 +12,31 @@ class App extends Component {
     super(args)
     this.state = {displayedTweets: []}
     this.setDisplayedTweets = this.setDisplayedTweets.bind(this)
+    this.fetchHashtagTweets = this.fetchHashtagTweets.bind(this)
+    this.fetchRecentTweets = this.fetchRecentTweets.bind(this)
   }
 
   setDisplayedTweets(tweets){
     this.setState({displayedTweets: tweets})
   }
 
-  componentDidMount() {
+  componentDidMount(){
+    this.fetchRecentTweets()
+  }
+
+  fetchRecentTweets() {
     if (STUB_MODE) this.setState({displayedTweets: tweetStubData})
     else {
       fetch("http://localhost:8000/tweets/recent")
         .then(response => response.json())
         .then(jsonObj => this.setState({displayedTweets: jsonObj}))
     }
+  }
+
+  fetchHashtagTweets(hashtagName){
+    fetch(`http://localhost:8000/tweets/search/${hashtagName}`)
+      .then(response => response.json())
+      .then(jsonObj => this.setState({displayedTweets: jsonObj}))
   }
 
   render(){
@@ -35,14 +47,13 @@ class App extends Component {
 
           <header id="top-nav">
             <div id="brand">Lil Twitter API</div>
-            <SearchBox setDisplayedTweets={this.setDisplayedTweets} />
+            <SearchBox fetchHashtagTweets={this.fetchHashtagTweets} />
             <i className="fa fa-search"></i>
           </header>
           <section className="container">
             <section id="tweet-box">
               <p id="tweet-box-title">Compose New Tweet</p>
-              <TweetForm />
-
+              <TweetForm fetchRecentTweets={this.fetchRecentTweets} />
             </section>
             <section id="trends-container">
               <h3>Trends</h3>
@@ -50,7 +61,7 @@ class App extends Component {
             </section>
             <section id="tweets-container">
               <h3>Tweets</h3>
-              <TweetStreamDisplay data={this.state.displayedTweets} setDisplayedTweets={this.setDisplayedTweets} />
+              <TweetStreamDisplay data={this.state.displayedTweets} fetchHashtagTweets={this.fetchHashtagTweets} />
             </section>
           </section>
 
@@ -63,7 +74,7 @@ class App extends Component {
       )
     }
     else return (
-      <ul></ul>
+      <div></div>
     )
   }
 }

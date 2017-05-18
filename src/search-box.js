@@ -11,14 +11,8 @@ class SearchBox extends Component{
     this.fetchHashtagTweets = this.fetchHashtagTweets.bind(this)
   }
 
-  updateTweetRiver(tweets){
-    this.props.setDisplayedTweets(tweets)
-  }
-
   fetchHashtagTweets(hashtagName){
-    fetch(`http://localhost:8000/tweets/search/${hashtagName}`)
-      .then(response => response.json())
-      .then(jsonObj => this.updateTweetRiver(jsonObj))
+    this.props.fetchHashtagTweets(hashtagName)
   }
 
   handleChange(e){

@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 
 class Tweet extends Component {
-  localFetchHashtagTweets(hashtag){
-    this.props.fetchHashtagTweets(hashtag)
+  constructor(args){
+    super(args)
+    this.fetchHashtagTweets = this.fetchHashtagTweets.bind(this)
+  }
+
+  fetchHashtagTweets(hashtagName){
+    this.props.fetchHashtagTweets(hashtagName)
   }
 
   render(){
@@ -17,7 +22,7 @@ class Tweet extends Component {
           </p>
           <p>
             {this.props.data.content}
-            {this.props.data.hashtag_names.map((hashtag, i) => <span onClick={() => this.localFetchHashtagTweets(hashtag)} className="hashtag" key={i}> #{hashtag} </span>)}
+            {this.props.data.hashtag_names.map((hashtag, i) => <span onClick={() => this.fetchHashtagTweets(hashtag)} className="hashtag" key={i}> #{hashtag} </span>)}
           </p>
         </div>
       </li>
