@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TweetStreamDisplay from './tweet-stream-display'
 import TrendsStream from './trends-stream'
 import TweetForm from './tweet-form'
+import SearchBox from './search-box'
 import tweetStubData from './tweets-stub-data'
 
 const STUB_MODE = false
@@ -34,9 +35,7 @@ class App extends Component {
 
           <header id="top-nav">
             <div id="brand">Lil Twitter API</div>
-            <form id="search-form">
-              <input id="search" type="text" name="query" />
-            </form>
+            <SearchBox setDisplayedTweets={this.setDisplayedTweets} />
             <i className="fa fa-search"></i>
           </header>
           <section className="container">
