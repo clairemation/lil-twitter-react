@@ -10,7 +10,7 @@ class TweetStream extends Component {
     this.state = {data: []}
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (STUB_MODE) this.setState({data: tweetStubData})
     else {
       fetch("http://localhost:8000/tweets/recent")
@@ -20,18 +20,17 @@ class TweetStream extends Component {
   }
 
   render(){
-    console.log(this.state)
     if(this.state.data[0]){
       return (
-        <section id="tweet-stream-react">
+        <ul id="tweet-stream-react">
           {this.state.data.map((data, i) =>
             <Tweet data={this.state.data[i]} key={i} />
           )}
-        </section>
+        </ul>
       )
     }
     else return (
-      <p></p>
+      <ul></ul>
     )
   }
 }
